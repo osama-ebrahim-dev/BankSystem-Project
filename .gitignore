@@ -1,5 +1,27 @@
+# ---------------------------
+# Visual Studio C++ .gitignore
+# ---------------------------
+
 # Prerequisites
 *.d
+
+# Visual Studio cache / settings
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output folders
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+Debug/
+Release/
+build/
 
 # Compiled Object files
 *.slo
@@ -16,15 +38,13 @@
 
 # Debugger Files
 *.pdb
+*.idb
 
 # Compiled Dynamic libraries
 *.so
+*.so.*
 *.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
 
 # Compiled Static libraries
 *.lai
@@ -36,6 +56,30 @@
 *.exe
 *.out
 *.app
+*.ipa
 
-# debug information files
+# Logs and temporary files
+*.log
+*.tlog
+*.tmp
+*.cache
+*.bak
+
+# Other VS-generated files
+*.ipch
+*.iobj
+*.ipdb
+
+# Clang / CMake intermediate
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Debug information files
 *.dwo
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/

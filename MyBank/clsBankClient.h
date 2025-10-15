@@ -6,6 +6,7 @@
 #include <fstream>
 #include "clsString.h"
 #include "vector"
+#include "clsInputValidate.h"
 
 
 using namespace std;
@@ -30,10 +31,72 @@ private:
 		vector<string>vFields = clsString::vSplit(Line, "#//#");
 		return clsBankClient(enState::Loaded, vFields[0], vFields[1], vFields[2], vFields[3], vFields[4], vFields[5], stod(vFields[6]));
 	}
+	string _ConvertToLine()
+	{
+		string Delimiter = "#//#";
+
+		return GetFirstName() + Delimiter + GetLastName() + Delimiter + GetEmail() + Delimiter
+			+ GetPhone() + Delimiter + _AccountNumber + Delimiter + _PinCode + Delimiter + to_string(_Balance);
+	}
 	static clsBankClient _EmptyClient()
 	{
 		return clsBankClient(enState::Empty, "", "", "", "", "", "", 0);
 	}
+	static vector <clsBankClient> _LoadDataFromFileToVector()
+	{
+		fstream File;
+		vector <clsBankClient> vClients;
+		string Line = "";
+
+		File.open(FileName, ios::in);
+
+		if (File.is_open())
+		{
+			while (getline(File, Line))
+			{
+				vClients.push_back(_ConvertLineToClient(Line));
+			}
+			File.close();
+		}
+		return vClients;
+	}
+	static void _SaveVectorToFile(vector <clsBankClient> vClients)
+	{
+
+		fstream File;
+		File.open(FileName, ios::out);
+
+		if (File.is_open())
+		{
+			for (clsBankClient& Client : vClients)
+			{
+				File << Client._ConvertToLine() << endl;
+			}
+			File.close();
+		}
+		
+	}
+	void _UpdateInVector(vector <clsBankClient> & vClients)
+	{
+		for (clsBankClient& Client : vClients)
+		{
+			if (Client._AccountNumber == _AccountNumber)
+			{
+				Client = (*this);
+				break;
+			}
+		}
+	}
+	void _Update()
+	{
+		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
+
+		_UpdateInVector(vClients);
+
+		_SaveVectorToFile(vClients);
+
+	}
+
 public:
 
 	clsBankClient(enState State, string FirstName, string LastName, string Email, string Phone ,string AccountNumber , string PinCode, double Balance)
@@ -61,7 +124,7 @@ public:
 
 	void SetPinCode(string PinCode)
 	{
-		_PinCode = PinCode;
+			_PinCode = PinCode;
 	}
 	string GetPinCode()
 	{
@@ -75,9 +138,10 @@ public:
 
 
 public:
-
+	
 	static clsBankClient Find(string AccountNumber)
 	{
+
 		fstream File;
 
 		File.open(FileName, ios::in);
@@ -85,7 +149,7 @@ public:
 		if (File.is_open())
 		{
 			string Line = "";
-			
+
 			while (getline(File, Line))
 			{
 				clsBankClient Client = _ConvertLineToClient(Line);
@@ -117,19 +181,35 @@ public:
 	}
 
 
-	void Print()
+	string ToString()
 	{
-		cout << "\nClient Card : ";
-		cout << "\n________________________________";
-		cout << "\nFirstName   : " << GetFirstName();
-		cout << "\nLastName    : " << GetLastName();
-		cout << "\nFull Name   : " << GetFirstName() + " " + GetLastName();
-		cout << "\nEmail       : " << GetEmail();
-		cout << "\nPhone       : " << GetPhone();
-		cout << "\nAcc. Number : " << _AccountNumber;
-		cout << "\nPassword    : " << _PinCode;
-		cout << "\nBalance     : " << _Balance;
-		cout << "\n________________________________\n";
+		string ClientCard = "";
+
+		ClientCard += "\nFirstName   : " + GetFirstName();
+		ClientCard += "\nLastName    : " + GetLastName();
+		ClientCard += "\nFull Name   : " + GetFirstName() + " " + GetLastName();
+		ClientCard += "\nEmail       : " + GetEmail();
+		ClientCard += "\nPhone       : " + GetPhone();
+		ClientCard += "\nAcc. Number : " + _AccountNumber;
+		ClientCard += "\nPassword    : " + _PinCode;
+		ClientCard += "\nBalance     : " + to_string(_Balance);
+
+		return ClientCard;
+	}
+
+
+	bool Save()
+	{
+		if (IsFound())
+		{
+			_Update();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+				 
 	}
 
 

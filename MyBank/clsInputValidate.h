@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 
 using namespace std;
@@ -81,6 +82,18 @@ public:
 		return Number;
 	}
 
+
+	static string ReadString(string Message)
+	{
+
+		string Text = "";
+
+		cout << Message;
+		getline(cin >> ws, Text);
+
+		return Text;
+
+	}
 
 };
 

@@ -4,6 +4,15 @@
 
 using namespace std;
 
+//const
+
+//void PrintClient(const clsBankClient Client) 
+//{
+//
+//    cout << Client.ToString(); 
+//
+//}
+
 void ReadUpdatedClientInfo(clsBankClient& Client)
 {
 
@@ -67,8 +76,7 @@ void AddClient()
         AccountNumber = clsInputValidate::ReadString("Enter a non-exist account number : ");
     }
 
-
-    clsBankClient Client(clsBankClient::enState::Add, "", "", "", "", AccountNumber, "", 0);
+    clsBankClient Client = clsBankClient::GetNewClient(AccountNumber);
 
     
     ReadNewClientInfo(Client);
@@ -76,11 +84,11 @@ void AddClient()
 
     clsBankClient::enSaveState SaveResult = Client.Save();
 
-    
+
     switch (SaveResult)
     {
     case clsBankClient::Added:
-        cout << "Client Added successfully.\n";
+        cout << "\n\nClient Added successfully.\n";
         cout << Client.ToString();
         break;
     case clsBankClient::svFailed_EmptyClient:
@@ -98,11 +106,61 @@ void AddClient()
 
 }
 
+bool DeleteClient()
+{
+    cout << "Deleting client.\n\n";
+
+    string AccountNumber = clsInputValidate::ReadString("Enter account number : ");
+
+
+    while (!clsBankClient::IsFound(AccountNumber))
+    {
+        AccountNumber = clsInputValidate::ReadString("Client does not exist ! ,Enter account number : ");
+    }
+
+    clsBankClient Client = clsBankClient::Find(AccountNumber);
+
+    cout << Client.ToString();
+
+    char Confirm = clsInputValidate::ReadChar("\nAre you sure to delete this client (y/n) : ");
+
+    if (Confirm == 'Y' || Confirm == 'y')
+    {
+        if(clsBankClient::Delete(AccountNumber))
+        {
+            cout << "Client has been deleted successfully.\n";
+            return true;
+        }
+        else
+        {
+            cout << "error occurred . Client Was not Deleted\n";
+            return false;
+        }
+    }
+    else
+    {
+        cout << "Delete operation has been cancelled.\n";
+        return false;
+    }
+
+    
+
+}
 
 int main()
 {
 
-    AddClient();
+    //DeleteClient();
+
+
+    vector <int> vNumbers = { 1,2,3,4 };
+
+
+
+
+
+
+
 
     return 0;
 }

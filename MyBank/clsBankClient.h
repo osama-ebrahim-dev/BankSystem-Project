@@ -24,6 +24,7 @@ private:
 	string _PinCode;
 	double _Balance;
 	enState _State;
+	bool _MarkForDelete;
 
 private:
 	static clsBankClient _ConvertLineToClient(string Line)
@@ -56,7 +57,7 @@ private:
 		}
 		return vClients;
 	}
-	static void _SaveVectorToFile(vector <clsBankClient> vClients)
+	static void _SaveVectorToFile(vector <clsBankClient> & vClients)
 	{
 
 		fstream File;
@@ -66,7 +67,10 @@ private:
 		{
 			for (clsBankClient& Client : vClients)
 			{
-				File << Client._ConvertToLine() << endl;
+				if(Client._MarkForDelete == false)
+				{
+					File << Client._ConvertToLine() << endl;
+				}
 			}
 			File.close();
 		}
@@ -93,6 +97,17 @@ private:
 		}
 		File.close();
 	}
+	static void _MarkForDeleteInVector(vector <clsBankClient> & vClients , string AccountNumber)
+	{
+		for (clsBankClient& Client : vClients)
+		{
+			if (Client.GetAccountNumber() == AccountNumber)
+			{
+				Client._MarkForDelete = true;
+				return;
+			}
+		}
+	}
 	void _Update()
 	{
 		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
@@ -113,7 +128,7 @@ private:
 
 	}
 public:
-
+	// _MarkForDelete
 	clsBankClient(enState State, string FirstName, string LastName, string Email, string Phone ,string AccountNumber , string PinCode, double Balance)
 		: clsPerson(FirstName, LastName, Email, Phone)
 	{
@@ -121,6 +136,7 @@ public:
 		_AccountNumber = AccountNumber;
 		_PinCode = PinCode;
 		_Balance = Balance;
+		_MarkForDelete = false;
 	}
 
 	void SetState(enState State)
@@ -158,11 +174,16 @@ public:
 
 public:
 	
-	static clsBankClient EmptyClient()
+
+	static clsBankClient GetEmptyClient()
 	{
 		return clsBankClient(enState::Empty, "", "", "", "", "", "", 0);
 	}
 
+	static clsBankClient GetNewClient(string AccountNumber)
+	{
+		return clsBankClient(clsBankClient::enState::Add, "", "", "", "", AccountNumber, "", 0);
+	}
 
 	static clsBankClient Find(string AccountNumber)
 	{
@@ -188,7 +209,7 @@ public:
 
 		}
 		File.close();
-		return EmptyClient();
+		return GetEmptyClient();
 
 	}
 
@@ -267,6 +288,26 @@ public:
 			return svFailed_EmptyClient;
 		}
  
+	}
+
+	// IsFound(AccountNumber)
+	static bool Delete(string AccountNumber)
+	{
+		if(IsFound(AccountNumber))
+		{
+			vector <clsBankClient> vClients = _LoadDataFromFileToVector();
+
+			_MarkForDeleteInVector(vClients, AccountNumber);
+
+			_SaveVectorToFile(vClients);
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
 	}
 
 

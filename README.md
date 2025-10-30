@@ -11,6 +11,7 @@ a bank system dealing with clients to make basic bank operations
 - Feature 1 — Finding a client from a txt file  
 - Feature 2 — Updating a client in the txt file
 - Feature 3 — Adding a new client in the txt file
+- Feature 4 — Deleting a client from the txt file  
 
 ---
 

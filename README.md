@@ -12,6 +12,7 @@ a bank system dealing with clients to make basic bank operations
 - Feature 2 — Updating a client in the txt file
 - Feature 3 — Adding a new client in the txt file
 - Feature 4 — Deleting a client from the txt file  
+- Feature 5 — clients list , balances list
 
 ---
 
@@ -30,6 +31,7 @@ a bank system dealing with clients to make basic bank operations
 - **Libraries / Frameworks Used:**  
   - string library - a user-defined helper class   
   - input validate library - a user-defined helper class 
+  - Util library - a user-defined helper class 
 ---
 
 ## 👨‍💻 Author

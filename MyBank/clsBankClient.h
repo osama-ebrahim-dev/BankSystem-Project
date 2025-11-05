@@ -128,7 +128,7 @@ private:
 
 	}
 public:
-	// _MarkForDelete
+
 	clsBankClient(enState State, string FirstName, string LastName, string Email, string Phone ,string AccountNumber , string PinCode, double Balance)
 		: clsPerson(FirstName, LastName, Email, Phone)
 	{
@@ -290,9 +290,9 @@ public:
  
 	}
 
-	// IsFound(AccountNumber)
 	static bool Delete(string AccountNumber)
 	{
+
 		if(IsFound(AccountNumber))
 		{
 			vector <clsBankClient> vClients = _LoadDataFromFileToVector();
@@ -310,6 +310,22 @@ public:
 
 	}
 
+	static vector <clsBankClient> GetClients()
+	{
+		return _LoadDataFromFileToVector();
+	}
+
+	static double GetTotalBalances()
+	{
+		vector <clsBankClient> vClients = _LoadDataFromFileToVector();
+		double TotalBalances = 0;
+
+		for (clsBankClient& Client : vClients)
+		{
+			TotalBalances += Client.GetBalance();
+		}
+		return TotalBalances;
+	}
 
 };
 

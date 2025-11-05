@@ -1,17 +1,10 @@
 ﻿#include <iostream>
+#include <iomanip>
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
+#include "clsUtil.h"
 
 using namespace std;
-
-//const
-
-//void PrintClient(const clsBankClient Client) 
-//{
-//
-//    cout << Client.ToString(); 
-//
-//}
 
 void ReadUpdatedClientInfo(clsBankClient& Client)
 {
@@ -147,20 +140,98 @@ bool DeleteClient()
 
 }
 
+void PrintOneClient(clsBankClient Client)
+{
+    cout << "|" << setw(15) << left << Client.GetAccountNumber()
+        << "|" << setw(22) << left << Client.GetFirstName() + " " + Client.GetLastName()
+        << "|" << setw(14) << left << Client.GetPhone()
+        << "|" << setw(25) << left << Client.GetEmail()
+        << "|" << setw(10) << left << Client.GetPinCode()
+        << "|" << setw(10) << left << Client.GetBalance()
+        << '\n';
+}
+
+void DisplayClientsList()
+{
+    vector <clsBankClient> vClients = clsBankClient::GetClients();
+
+    cout << "\t\t\t\t\tclient list (" << vClients.size() << ") client(s).\n";
+
+    cout << string(110, '_') << "\n\n";
+
+    cout << "|" << setw(15) << left << "Account Number"
+        << "|" << setw(22) << left << "Client Name"
+        << "|" << setw(14) << left << "Phone"
+        << "|" << setw(25) << left << "email"
+        << "|" << setw(10) << left << "pin code"
+        << "|" << setw(10) << left << "Balance"
+        << '\n';
+        
+    cout << string(110, '_') << '\n';
+
+    if (vClients.size() == 0)
+    {
+        cout << "\t\t\t\t\tNo clients Found .";
+        cout << string(110, '_') << '\n';
+        return;
+    }
+
+    for (clsBankClient& Client : vClients)
+    {
+        PrintOneClient(Client);
+    }
+    cout << string(110, '_') << '\n';
+
+}
+
+void PrintOneClientBalance(clsBankClient Client)
+{
+    cout << "|" << setw(15) << left << Client.GetAccountNumber()
+        << "|" << setw(22) << left << Client.GetFirstName() + " " + Client.GetLastName()
+        << "|" << setw(10) << left << Client.GetBalance()
+        << '\n';
+
+}
+
+void DisplayBalancesList()
+{
+    vector <clsBankClient> vClients = clsBankClient::GetClients();
+
+    cout << "\t\tclient list (" << vClients.size() << ") client(s).\n";
+
+    cout << string(60, '_') << "\n\n";
+
+    cout << "|" << setw(15) << left << "Account Number"
+        << "|" << setw(22) << left << "Client Name"
+        << "|" << setw(10) << left << "Balance"
+        << '\n';
+
+    cout << string(60, '_') << '\n';
+
+    if (vClients.size() == 0)
+    {
+        cout << "\t\t\t\t\tNo clients Found .";
+        cout << string(60, '_') << '\n';
+        return;
+    }
+
+    for (clsBankClient& Client : vClients)
+    {
+        PrintOneClientBalance(Client);
+    }
+    cout << string(60, '_') << '\n';
+
+    double TotalBalances = clsBankClient::GetTotalBalances();
+
+    cout << "\t\tTotal balances = " << TotalBalances << '\n';
+    cout << "\t\t" << clsUtil::numberToWords(TotalBalances) << '\n';
+
+
+}
+
 int main()
 {
-
-    //DeleteClient();
-
-
-    vector <int> vNumbers = { 1,2,3,4 };
-
-
-
-
-
-
-
+    DisplayBalancesList();
 
     return 0;
 }

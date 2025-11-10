@@ -241,7 +241,7 @@ public:
 		ClientCard += "\nAcc. Number : " + _AccountNumber;
 		ClientCard += "\nPassword    : " + _PinCode;
 		ClientCard += "\nBalance     : " + to_string(_Balance);
-		ClientCard += "\n---------------------------";
+		ClientCard += "\n---------------------------\n";
 
 		return ClientCard;
 	}
@@ -251,7 +251,6 @@ public:
 	{
 		return (_State == enState::Empty);
 	}
-
 
 
 	enum enSaveState { Updated, Added, svFailed_EmptyClient , svFailed_ClientNotExists , svFailed_ClientExists};

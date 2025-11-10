@@ -13,6 +13,7 @@ a bank system dealing with clients to make basic bank operations
 - Feature 3 — Adding a new client in the txt file
 - Feature 4 — Deleting a client from the txt file  
 - Feature 5 — clients list , balances list
+- Feature 6 — a Main menu containig (list clients, add , delete , update , find)
 
 ---
 
@@ -20,6 +21,9 @@ a bank system dealing with clients to make basic bank operations
 
 - **Classes:** (`Person`, `Bank Client`)  
 - **Inheritance:** Bank Client inherits from Person
+
+- **Classes:** (`Screen`, `Main menu screen`)  
+- **Inheritance:** Main menu screen inherits from Screen
 
 ---
 

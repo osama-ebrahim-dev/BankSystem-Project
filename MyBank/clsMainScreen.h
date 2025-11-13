@@ -8,6 +8,8 @@
 #include "clsDeleteClientScreen.h"
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
+#include "clsTransactionsScreen.h"
+#include "clsManageUsersScreen.h"
 
 using namespace std;
 
@@ -74,12 +76,12 @@ private :
 
     static void _ShowTransactionsMenu()
     {
-        DrawScreenHeader("TransactionsMenu");
+        clsTransactionsScreen::StartTransactionsMenu();
     }
 
     static void _ManageUsers()
     {
-        DrawScreenHeader("ManageUsers");
+        //clsManageUsersScreen::StartManageUsersMenu();
     }
 
 
@@ -89,24 +91,30 @@ private :
         {
         case clsMainScreen::_enMainMenuOptions::ListClients:
             _ListClients();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::AddNewClient:
             _AddNewClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::DeleteClient:
             _DeleteClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::UpdateClient:
             _UpdateClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::FindClient:
             _FindClient();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::ShowTransactionsMenu:
             _ShowTransactionsMenu();
             break;
         case clsMainScreen::_enMainMenuOptions::ManageUsers:
             _ManageUsers();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::eExit:
             //Login();
@@ -133,7 +141,6 @@ public:
 
             _PerformMainMenuOperation(Choice);
 
-            system("pause=0");
             system("cls");
 
         }

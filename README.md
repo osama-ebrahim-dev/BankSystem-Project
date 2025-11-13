@@ -8,12 +8,14 @@ a bank system dealing with clients to make basic bank operations
 ---
 
 ## 🚀 Features Implemented
+
 - Feature 1 — Finding a client from a txt file  
 - Feature 2 — Updating a client in the txt file
 - Feature 3 — Adding a new client in the txt file
 - Feature 4 — Deleting a client from the txt file  
 - Feature 5 — clients list , balances list
 - Feature 6 — a Main menu containig (list clients, add , delete , update , find)
+- Feature 7 — a Transactions menu containig (Deposit , Withdraw , Total Balances list , returning to main menu)
 
 ---
 
@@ -24,6 +26,9 @@ a bank system dealing with clients to make basic bank operations
 
 - **Classes:** (`Screen`, `Main menu screen`)  
 - **Inheritance:** Main menu screen inherits from Screen
+
+- **Classes:** (`Transactions menu screen`)  
+- **Inheritance:** Transactions menu screen inherits from Screen
 
 ---
 

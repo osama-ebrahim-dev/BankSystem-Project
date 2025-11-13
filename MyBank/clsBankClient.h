@@ -263,6 +263,7 @@ public:
 		{
 		case clsBankClient::Empty:
 			return svFailed_EmptyClient;
+
 		case clsBankClient::Update:
 			if(IsFound(_AccountNumber))
 			{
@@ -324,6 +325,34 @@ public:
 			TotalBalances += Client.GetBalance();
 		}
 		return TotalBalances;
+	}
+
+	bool Deposit(double Amount)
+	{
+		if (Amount > 0)
+		{
+			_Balance += Amount;
+			return true;
+		}
+		return false;
+	}
+
+	bool WithDraw(double Amount)
+	{
+		if (Amount <= 0)
+		{
+			return false;
+		}
+
+		if (Amount <= _Balance)
+		{
+			_Balance -= Amount;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 };

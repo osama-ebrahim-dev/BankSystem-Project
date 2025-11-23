@@ -16,6 +16,7 @@ a bank system dealing with clients to make basic bank operations
 - Feature 5 — clients list , balances list
 - Feature 6 — a Main menu containig (list clients, add , delete , update , find)
 - Feature 7 — a Transactions menu containig (Deposit , Withdraw , Total Balances list , returning to main menu)
+- Feature 8 — Business logic layer for USER (User class)
 
 ---
 
@@ -29,6 +30,10 @@ a bank system dealing with clients to make basic bank operations
 
 - **Classes:** (`Transactions menu screen`)  
 - **Inheritance:** Transactions menu screen inherits from Screen
+
+- **Classes:** (`User`)  
+- **Inheritance:** Bank User inherits from Person
+
 
 ---
 

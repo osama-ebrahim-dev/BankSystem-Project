@@ -81,7 +81,7 @@ private :
 
     static void _ManageUsers()
     {
-        //clsManageUsersScreen::StartManageUsersMenu();
+        clsManageUsersScreen::StartManageUsersMenu();
     }
 
 
@@ -114,7 +114,6 @@ private :
             break;
         case clsMainScreen::_enMainMenuOptions::ManageUsers:
             _ManageUsers();
-            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::eExit:
             //Login();

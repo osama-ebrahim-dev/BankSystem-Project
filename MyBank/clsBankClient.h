@@ -7,6 +7,7 @@
 #include "clsString.h"
 #include "vector"
 #include "clsInputValidate.h"
+#include "clsUtil.h"
 
 
 using namespace std;
@@ -87,16 +88,6 @@ private:
 			}
 		}
 	}
-	static void _AddClientToFile(string ClientAsLine)
-	{
-		fstream File;
-		File.open(FileName, ios::out | ios::app);
-		if (File.is_open())
-		{
-			File << ClientAsLine << endl;
-		}
-		File.close();
-	}
 	static void _MarkForDeleteInVector(vector <clsBankClient> & vClients , string AccountNumber)
 	{
 		for (clsBankClient& Client : vClients)
@@ -117,14 +108,17 @@ private:
 		_SaveVectorToFile(vClients);
 
 	}
-	void _AddNew()
+	bool _AddNew()
 	{
 
 		string ClientAsLine = (*this)._ConvertToLine();
 
-		_AddClientToFile(ClientAsLine);
-
-		_State = enState::Update;
+		if(clsUtil::AddLineToFile(ClientAsLine, FileName))
+		{
+			_State = enState::Update;
+			return true;
+		}
+		return false;
 
 	}
 public:

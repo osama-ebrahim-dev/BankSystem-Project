@@ -2,6 +2,12 @@
 
 #include <iostream>
 #include "clsScreen.h"
+#include "clsListUsersScreen.h"
+#include "clsAddNewUserScreen.h"
+#include "clsDeleteUserScreen.h"
+#include "clsUpdateUserScreen.h"
+#include "clsFindUserScreen.h"
+
 
 using namespace std;
 
@@ -43,31 +49,27 @@ private:
 
 	static void _ListUsers()
 	{
-		DrawScreenHeader("ListUsers");
+		clsListUsersScreen::DisplayUsersList();
 	}
 
 	static bool _AddNewUser()
 	{
-		DrawScreenHeader("AddNewUser");
-		return true;
+		return clsAddNewUserScreen::AddUser();
 	}
 
 	static bool _DeleteUser()
 	{
-		DrawScreenHeader("DeleteUser");
-		return true;
+		return clsDeleteUserScreen::DeleteUser();
 	}
 
 	static bool _UpdateUser()
 	{
-		DrawScreenHeader("UpdateUser");
-		return true;
+		return clsUpdateUserScreen::UpdateClient();
 	}
 
 	static bool _FindUser()
 	{
-		DrawScreenHeader("FindUser");
-		return true;
+		return clsFindUserScreen::FindClient();
 	}
 
 	static void _PerformManageUsersMenuOperation(_enManageUsersMenuOptions Choice)

@@ -12,13 +12,20 @@
 using namespace std;
 
 
-const string FileName = "BankUsers.txt";
+const string UsersFile = "BankUsers.txt";
 
 
 class clsBankUser : public clsPerson
 {
 public:
     enum class enState { Empty, Update, Add };
+
+    enum class enPermissions
+    {
+        All = -1, ListClients = 1, AddNewClient = 2, DeleteClient = 4,
+        UpdateClient = 8, FindClient = 16, Tranactions = 32, ManageUsers = 64
+        , None = 0, Total = 127
+    };
 private:
     enState _State;
 	string _UserName;
@@ -37,7 +44,7 @@ private:
         vector <clsBankUser> vUsers;
         string Line = "";
 
-        File.open(FileName, ios::in);
+        File.open(UsersFile, ios::in);
 
         if (File.is_open())
         {
@@ -76,7 +83,7 @@ private:
     static bool _SaveVectorToFile(vector <clsBankUser>& vUsers)
     {
         fstream File;
-        File.open(FileName, ios::out);
+        File.open(UsersFile, ios::out);
 
         if (File.is_open())
         {
@@ -108,7 +115,7 @@ private:
     {
         string UserAsLine = (*this)._ConvertToLine();
 
-        if (clsUtil::AddLineToFile(UserAsLine, FileName))
+        if (clsUtil::AddLineToFile(UserAsLine, UsersFile))
         {
             _State = enState::Update;
             return true;
@@ -196,7 +203,7 @@ public:
     {
         fstream File;
 
-        File.open(FileName, ios::in);
+        File.open(UsersFile, ios::in);
 
         if (File.is_open())
         {
@@ -268,6 +275,36 @@ public:
             return true;
         }
         return false;
+    }
+
+    static vector <clsBankUser> GetUsers()
+    {
+        return _LoadUsersFromFileToVector();
+    }
+
+    static clsBankUser GetNewUser(string UserName)
+    {
+        return clsBankUser(clsBankUser::enState::Add, "", "", "", "", UserName, "", 0);
+    }
+
+    string ToString()
+    {
+
+        string UserCard = "";
+
+        UserCard += "\n---------------------------";
+        UserCard += "\nFirstName   : " + GetFirstName();
+        UserCard += "\nLastName    : " + GetLastName();
+        UserCard += "\nFull Name   : " + GetFirstName() + " " + GetLastName();
+        UserCard += "\nEmail       : " + GetEmail();
+        UserCard += "\nPhone       : " + GetPhone();
+        UserCard += "\nUser name   : " + _UserName;
+        UserCard += "\nPassword    : " + _Password;
+        UserCard += "\nPermission  : " + to_string(_Permission);
+        UserCard += "\n---------------------------\n";
+
+        return UserCard;
+
     }
 
 };

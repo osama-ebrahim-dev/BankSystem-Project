@@ -12,20 +12,20 @@ class clsFindClientScreen : public clsScreen
 
 public:
 
-	static bool FindClient()
-	{
+    static bool FindClient()
+    {
         DrawScreenHeader("Find client");
 
         string AccountNumber = clsInputValidate::ReadString("Enter account number : ");
 
-        while (!clsBankClient::IsFound(AccountNumber))
+        while (!clsBankClient::IsClientFound(AccountNumber))
         {
             AccountNumber = clsInputValidate::ReadString("invalid acc. number ,Enter a valid account number : ");
         }
 
         clsBankClient Client = clsBankClient::Find(AccountNumber);
 
-        if (!Client.IsEmpty())
+        if (Client.IsActive())
         {
             cout << "\n\nClient is found .\n\n";
             cout << Client.ToString();
@@ -37,7 +37,7 @@ public:
             return false;
         }
 
-	}
+    }
 
 };
 

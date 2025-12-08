@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "clsLoginScreen.h"
 #include "clsMainScreen.h"
 
 using namespace std;
@@ -6,10 +7,13 @@ using namespace std;
 
 int main()
 {
+    while (true)
+    {
 
+        clsLoginScreen::Login();
+        clsMainScreen::StartBankSystem();
 
-    clsMainScreen::StartBankSystem();
-
+    }
 
     return 0;
 }

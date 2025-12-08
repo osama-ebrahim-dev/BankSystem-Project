@@ -57,10 +57,6 @@ private:
         return vUsers;
 
     }
-    static clsBankUser _GetEmptyUser()
-    {
-        return clsBankUser(enState::Empty, "", "", "", "", "", "", 0);
-    }
     bool _UpdateUserInVector(vector <clsBankUser>& vUsers)
     {
         for (clsBankUser& User : vUsers)
@@ -222,7 +218,34 @@ public:
 
         }
         File.close();
-        return _GetEmptyUser();
+        return GetEmptyUser();
+
+    }
+
+    static clsBankUser Find(string UserName ,string Password)
+    {
+        fstream File;
+
+        File.open(UsersFile, ios::in);
+
+        if (File.is_open())
+        {
+            string Line = "";
+
+            while (getline(File, Line))
+            {
+                clsBankUser User = _ConvertLineToUser(Line);
+
+                if (User._UserName == UserName && User._Password == Password)
+                {
+                    File.close();
+                    return User;
+                }
+            }
+            File.close();
+        }
+        
+        return GetEmptyUser();
 
     }
 
@@ -306,6 +329,12 @@ public:
         return UserCard;
 
     }
+
+    static clsBankUser GetEmptyUser()
+    {
+        return clsBankUser(enState::Empty, "", "", "", "", "", "", 0);
+    }
+
 
 };
 

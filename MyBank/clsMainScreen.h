@@ -10,6 +10,8 @@
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
 #include "clsManageUsersScreen.h"
+#include "clsSession.h"
+
 
 using namespace std;
 
@@ -20,7 +22,7 @@ private:
     enum class _enMainMenuOptions {
         ListClients = 1, AddNewClient = 2, DeleteClient = 3,
         UpdateClient = 4, FindClient = 5, ShowTransactionsMenu = 6,
-        ManageUsers = 7, eExit = 8
+        ManageUsers = 7, LogOut = 8
     };
 private :
     static void _DrawMainMenuScreen()
@@ -115,12 +117,11 @@ private :
         case clsMainScreen::_enMainMenuOptions::ManageUsers:
             _ManageUsers();
             break;
-        case clsMainScreen::_enMainMenuOptions::eExit:
-            //Login();
+        case clsMainScreen::_enMainMenuOptions::LogOut:
+            clsSession::EndSession();
             break;
         default:
-            //Login();
-            break;
+            return;
         }
     }
 
@@ -139,6 +140,12 @@ public:
             system("cls");
 
             _PerformMainMenuOperation(Choice);
+
+            if (Choice == _enMainMenuOptions::LogOut)
+            {
+                return;
+            }
+
 
             system("cls");
 

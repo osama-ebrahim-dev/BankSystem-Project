@@ -30,6 +30,13 @@ private:
 public:
     static bool UpdateClient()
     {
+        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::UpdateClient))
+        {
+            clsMessages::ShowAccessDeniedMessage();
+            return false;
+        }
+
+
         DrawScreenHeader("Updating client");
 
         string AccountNumber = clsInputValidate::ReadString("Enter account number : ");

@@ -19,6 +19,7 @@ a bank system dealing with clients to make basic bank operations
 - Feature 8 — Business logic layer for USER (User class)
 - Feature 9 — a manage users menu containig (list users, add , delete , update , find)
 - Feature 10 — login and logout
+- Feature 11 — Applying permissions
 
 
 ---

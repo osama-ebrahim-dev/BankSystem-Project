@@ -79,8 +79,19 @@ public:
 
 	static void StartTransactionsMenu()
 	{
+
+        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::Tranactions))
+        {
+            clsMessages::ShowAccessDeniedMessage();
+            system("pause=0");
+            return;
+        }
+
+
         while (true)
         {
+
+
             _DrawTransactionsMenu();
 
             _enTransactionsMenuOptions Choice = _ReadTransactionsMenuOption();

@@ -100,6 +100,14 @@ public:
 
 	static void StartManageUsersMenu()
 	{
+		if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::ManageUsers))
+		{
+			clsMessages::ShowAccessDeniedMessage();
+			system("pause=0");
+			return;
+		}
+
+
 		while (true)
 		{
 			_DrawManageUsersMenu();

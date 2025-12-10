@@ -28,5 +28,11 @@ public :
 	{
 		return _LoggedInUser;
 	}
+
+	static bool CheckUserPermission(clsBankUser::enPermissions OperationPermission)
+	{
+		return clsBankUser::DoesUserHavePermission(OperationPermission, _LoggedInUser.GetPermission());
+	}
+
 };
 

@@ -2,6 +2,7 @@
 #include "iostream"
 #include"clsScreen.h"
 #include "clsBankClient.h"
+#include "clsSession.h"
 
 using namespace std;
 
@@ -28,6 +29,13 @@ public:
 
     static bool AddClient()
     {
+        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::AddNewClient))
+        {
+            clsMessages::ShowAccessDeniedMessage();
+            return false;
+        }
+
+
         DrawScreenHeader("Adding new client");
 
         string AccountNumber = clsInputValidate::ReadString("Enter account number : ");

@@ -21,11 +21,11 @@ public:
 	enum enState { Empty, Update, Add };
 private:
 
-	string _AccountNumber;
-	string _PinCode;
-	double _Balance;
-	enState _State;
-	bool _MarkForDelete;
+	string _AccountNumber = "";
+	string _PinCode = "";
+	double _Balance = 0;
+	enState _State = enState::Empty;
+	bool _MarkForDelete = false;
 
 private:
 	static clsBankClient _ConvertLineToClient(string Line)
@@ -130,7 +130,6 @@ public:
 		_AccountNumber = AccountNumber;
 		_PinCode = PinCode;
 		_Balance = Balance;
-		_MarkForDelete = false;
 	}
 
 	void SetState(enState State)

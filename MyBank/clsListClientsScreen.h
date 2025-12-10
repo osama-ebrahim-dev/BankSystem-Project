@@ -4,6 +4,7 @@
 #include "clsScreen.h"
 #include "clsBankClient.h"
 #include "iomanip"
+#include "clsMessages.h"
 
 using namespace std;
 
@@ -27,6 +28,12 @@ public:
 
     static void DisplayClientsList()
     {
+
+        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::ListClients))
+        {
+            clsMessages::ShowAccessDeniedMessage();
+            return;
+        }
 
         vector <clsBankClient> vClients = clsBankClient::GetClients();
 

@@ -9,6 +9,7 @@
 #include "clsUtil.h"
 
 
+
 using namespace std;
 
 
@@ -27,11 +28,13 @@ public:
         , None = 0, Total = 127
     };
 private:
-    enState _State;
-	string _UserName;
-	string _Password;
-	int _Permission;
-    bool _MarkForDelete;
+
+    enState _State = enState::Empty;
+    string _UserName = "";
+    string _Password = "";
+    int _Permission = 0;
+    bool _MarkForDelete = false;
+
 private:
     static clsBankUser _ConvertLineToUser(string Line)
     {
@@ -142,7 +145,6 @@ public:
 		_UserName = UserName;
 		_Password = Password;
 		_Permission = Permission;
-        _MarkForDelete = false;
 	}
 
 
@@ -335,6 +337,10 @@ public:
         return clsBankUser(enState::Empty, "", "", "", "", "", "", 0);
     }
 
+    static bool DoesUserHavePermission(enPermissions OperationPermission, int UserPermission)
+    {
+        return (int(OperationPermission) & UserPermission);
+    }
 
 };
 

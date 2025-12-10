@@ -95,5 +95,8 @@
     <ClInclude Include="clsSession.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsMessages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

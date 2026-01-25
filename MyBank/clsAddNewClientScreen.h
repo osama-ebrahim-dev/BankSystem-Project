@@ -29,7 +29,7 @@ public:
 
     static bool AddClient()
     {
-        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::AddNewClient))
+        if (!clsSession::DoesCurrentUserHavePermission(clsBankUser::enPermissions::AddNewClient))
         {
             clsMessages::ShowAccessDeniedMessage();
             return false;

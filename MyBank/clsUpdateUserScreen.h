@@ -66,6 +66,13 @@ private:
             Permission += int(clsBankUser::enPermissions::ManageUsers);
         }
 
+        Confirm = clsInputValidate::ReadChar("\nLogin logger (y/n) : ");
+        if (Confirm == 'Y' || Confirm == 'y')
+        {
+            Permission += int(clsBankUser::enPermissions::LoginLogger);
+        }
+
+
         if (Permission == int(clsBankUser::enPermissions::Total))
         {
             return int(clsBankUser::enPermissions::All);

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include "clsSession.h"
+
+
 using namespace std;
 
 class clsScreen
@@ -16,7 +19,8 @@ protected:
 			cout << "               " << SubTitle << '\n';
 		}
 		cout << "-------------------------------------------\n";
-
+		cout << "User : " << clsSession::GetSessionUser().GetUserName() << endl;
+		cout << "Date : " << clsUtil::GetTodayDate() << endl << endl;
 	}
 
 };

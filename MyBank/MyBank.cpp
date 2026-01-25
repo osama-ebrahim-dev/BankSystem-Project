@@ -10,9 +10,11 @@ int main()
     while (true)
     {
 
-        clsLoginScreen::Login();
+        if(!clsLoginScreen::Login())
+        {
+            break;
+        }
         clsMainScreen::StartBankSystem();
-
     }
 
     return 0;

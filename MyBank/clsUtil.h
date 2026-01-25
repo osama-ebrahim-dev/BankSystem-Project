@@ -2,6 +2,12 @@
 
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+
+
 
 using namespace std;
 
@@ -10,6 +16,50 @@ class clsUtil
 {
 public:
 
+    static string GetCurrentTime()
+    {
+        using namespace std::chrono;
+
+        auto now = system_clock::now();
+        std::time_t nowTime = system_clock::to_time_t(now);
+
+        std::tm localTime;
+#ifdef _WIN32
+        localtime_s(&localTime, &nowTime);   
+#else
+        localtime_r(&localTime, &nowTime);   
+#endif
+
+        std::ostringstream oss;
+        oss << std::setw(2) << std::setfill('0') << localTime.tm_hour << ":"
+            << std::setw(2) << std::setfill('0') << localTime.tm_min << ":"
+            << std::setw(2) << std::setfill('0') << localTime.tm_sec;
+
+        return oss.str();
+    }
+
+    static string GetTodayDate()
+    {
+        using namespace std::chrono;
+
+        auto now = system_clock::now();
+        std::time_t tt = system_clock::to_time_t(now);
+
+        std::tm localTime{};
+#ifdef _WIN32
+        localtime_s(&localTime, &tt);
+#else
+        localtime_r(&tt, &localTime);
+#endif
+
+        int day = localTime.tm_mday;
+        int month = localTime.tm_mon + 1; 
+        int year = localTime.tm_year + 1900;
+
+        return std::to_string(day) + "-" +
+            std::to_string(month) + "-" +
+            std::to_string(year);
+    }
 
     static string numberToWords(long long number) 
     {

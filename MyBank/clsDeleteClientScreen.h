@@ -13,7 +13,7 @@ public:
     static bool DeleteClient()
     {
 
-        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::DeleteClient))
+        if (!clsSession::DoesCurrentUserHavePermission(clsBankUser::enPermissions::DeleteClient))
         {
             clsMessages::ShowAccessDeniedMessage();
             return false;

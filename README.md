@@ -20,7 +20,7 @@ a bank system dealing with clients to make basic bank operations
 - Feature 9 — a manage users menu containig (list users, add , delete , update , find)
 - Feature 10 — login and logout
 - Feature 11 — Applying permissions
-
+- Feature 12 — log (loggins and transfers) in file
 
 ---
 
@@ -43,6 +43,9 @@ a bank system dealing with clients to make basic bank operations
 
 - **Classes:** (`Login screen` , `Session`)  
 - **Inheritance:** Login screen inherits from Screen
+
+- **Classes:** (`clsAuditLogger`)  
+- **Inheritance:** no inheritance
 
 ---
 

@@ -11,6 +11,7 @@
 #include "clsTransactionsScreen.h"
 #include "clsManageUsersScreen.h"
 #include "clsSession.h"
+#include "clsLoginLoggerScreen.h"
 
 
 using namespace std;
@@ -22,7 +23,7 @@ private:
     enum class _enMainMenuOptions {
         ListClients = 1, AddNewClient = 2, DeleteClient = 3,
         UpdateClient = 4, FindClient = 5, ShowTransactionsMenu = 6,
-        ManageUsers = 7, LogOut = 8
+        ManageUsers = 7, LoginLogger, LogOut = 9
     };
 private :
     static void _DrawMainMenuScreen()
@@ -39,13 +40,14 @@ private :
         cout << "\t[5] Find Client.\n";
         cout << "\t[6] Transactions.\n";
         cout << "\t[7] Manage Users.\n";
-        cout << "\t[8] Logout.\n";
+        cout << "\t[8] Login logger.\n";
+        cout << "\t[9] Logout.\n";
         cout << "===========================================\n";
     }
 
     static _enMainMenuOptions ReadMainMenuOption()
     {
-        int MainMenuOption = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 8] : ", 1, 8);
+        int MainMenuOption = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 9] : ", 1, 9);
 
         return _enMainMenuOptions(MainMenuOption);
     }
@@ -86,6 +88,10 @@ private :
         clsManageUsersScreen::StartManageUsersMenu();
     }
 
+    static void _ShowLoginLogger()
+    {
+        clsLoginLoggerScreen::ShowLoginLoggerScreen();
+    }
 
     static void _PerformMainMenuOperation(_enMainMenuOptions Choice)
     {
@@ -116,6 +122,10 @@ private :
             break;
         case clsMainScreen::_enMainMenuOptions::ManageUsers:
             _ManageUsers();
+            break;
+        case clsMainScreen::_enMainMenuOptions::LoginLogger:
+            _ShowLoginLogger();
+            system("pause=0");
             break;
         case clsMainScreen::_enMainMenuOptions::LogOut:
             clsSession::EndSession();

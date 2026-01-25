@@ -29,7 +29,7 @@ public :
 		return _LoggedInUser;
 	}
 
-	static bool CheckUserPermission(clsBankUser::enPermissions OperationPermission)
+	static bool DoesCurrentUserHavePermission(clsBankUser::enPermissions OperationPermission)
 	{
 		return clsBankUser::DoesUserHavePermission(OperationPermission, _LoggedInUser.GetPermission());
 	}

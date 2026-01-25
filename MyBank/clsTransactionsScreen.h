@@ -5,6 +5,8 @@
 #include "clsDepositScreen.h"
 #include "clsWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
+#include "clsTransferScreen.h"
+#include "clsTransferLogScreen.h"
 
 
 using namespace std;
@@ -14,7 +16,7 @@ class clsTransactionsScreen : public clsScreen
 private:
     enum class _enTransactionsMenuOptions
     {
-        Deposit = 1, Withdraw = 2, ShowTotalBalance = 3, ShowMainMenu = 4
+        Deposit = 1, Withdraw = 2, ShowTotalBalance = 3, Transfer = 4, TransferLogger = 5, ShowMainMenu = 6
     };
 private:
     static void _DrawTransactionsMenu()
@@ -27,13 +29,15 @@ private:
         cout << "\t[1] Deposit.\n";
         cout << "\t[2] Withdraw.\n";
         cout << "\t[3] Total Balances.\n";
-        cout << "\t[4] Main Menu.\n";
+        cout << "\t[4] Transfer.\n";
+        cout << "\t[5] Transfer logger.\n";
+        cout << "\t[6] Main Menu.\n";
         cout << "===========================================\n";
     }
 
     static _enTransactionsMenuOptions _ReadTransactionsMenuOption()
     {
-        int TransactionsMenuOption = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 4] : ", 1, 4);
+        int TransactionsMenuOption = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 6] : ", 1, 6);
 
         return _enTransactionsMenuOptions(TransactionsMenuOption);
 
@@ -56,6 +60,16 @@ private:
         clsTotalBalancesScreen::DisplayTotalBalancesScreen();
     }
 
+    static bool _Transfer()
+    {
+        return clsTransferScreen::Transfer();
+    }
+
+    static void _TransferLogger()
+    {
+        clsTransferLogScreen::ShowTransferLog();
+    }
+
 
     static void _PerformTransactionsMenuOperation(_enTransactionsMenuOptions Choice)
     {
@@ -70,6 +84,12 @@ private:
         case clsTransactionsScreen::_enTransactionsMenuOptions::ShowTotalBalance:
             _ShowTotalBalance();
             break;
+        case clsTransactionsScreen::_enTransactionsMenuOptions::Transfer:
+            _Transfer();
+            break;
+        case clsTransactionsScreen::_enTransactionsMenuOptions::TransferLogger:
+            _TransferLogger();
+            break;
         default:
             return;
         }
@@ -80,7 +100,7 @@ public:
 	static void StartTransactionsMenu()
 	{
 
-        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::Tranactions))
+        if (!clsSession::DoesCurrentUserHavePermission(clsBankUser::enPermissions::Tranactions))
         {
             clsMessages::ShowAccessDeniedMessage();
             system("pause=0");

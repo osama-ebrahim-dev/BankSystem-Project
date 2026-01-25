@@ -29,7 +29,7 @@ public:
     static void DisplayClientsList()
     {
 
-        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::ListClients))
+        if (!clsSession::DoesCurrentUserHavePermission(clsBankUser::enPermissions::ListClients))
         {
             clsMessages::ShowAccessDeniedMessage();
             return;

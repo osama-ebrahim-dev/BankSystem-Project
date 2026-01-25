@@ -1,10 +1,10 @@
 #pragma once
 
 #include <iostream>
-#include "clsPerson.h"
 #include <vector>
 #include <fstream>
 #include <string>
+#include "clsPerson.h"
 #include "clsString.h"
 #include "clsUtil.h"
 
@@ -25,7 +25,8 @@ public:
     {
         All = -1, ListClients = 1, AddNewClient = 2, DeleteClient = 4,
         UpdateClient = 8, FindClient = 16, Tranactions = 32, ManageUsers = 64
-        , None = 0, Total = 127
+        , LoginLogger = 128
+        , None = 0, Total = 255
     };
 private:
 

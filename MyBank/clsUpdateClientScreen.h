@@ -30,7 +30,7 @@ private:
 public:
     static bool UpdateClient()
     {
-        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::UpdateClient))
+        if (!clsSession::DoesCurrentUserHavePermission(clsBankUser::enPermissions::UpdateClient))
         {
             clsMessages::ShowAccessDeniedMessage();
             return false;

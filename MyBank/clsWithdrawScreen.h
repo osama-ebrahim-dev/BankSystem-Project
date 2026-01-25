@@ -35,7 +35,6 @@ public :
             {
                 cout << "The transaction was completed successfully.\n";
                 cout << "New balance is : " << Client.GetBalance() << '\n';
-                Client.Save();
                 return true;
             }
             else

@@ -2,10 +2,10 @@
 
 #include <iostream>
 #include <string>
-#include "clsPerson.h"
+#include <vector>
 #include <fstream>
+#include "clsPerson.h"
 #include "clsString.h"
-#include "vector"
 #include "clsInputValidate.h"
 #include "clsUtil.h"
 
@@ -325,6 +325,7 @@ public:
 		if (Amount > 0)
 		{
 			_Balance += Amount;
+			Save();
 			return true;
 		}
 		return false;
@@ -340,12 +341,29 @@ public:
 		if (Amount <= _Balance)
 		{
 			_Balance -= Amount;
+			Save();
 			return true;
 		}
 		else
 		{
 			return false;
 		}
+	}
+
+	bool TransferTo(double Amount, clsBankClient& DestinationClient)
+	{
+		if (Amount <= 0 || Amount > _Balance)
+			return false;
+
+		if (!WithDraw(Amount))
+			return false;
+
+		if (!DestinationClient.Deposit(Amount))
+		{
+			Deposit(Amount);
+			return false;
+		}
+		return true;
 	}
 
 };

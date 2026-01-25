@@ -15,7 +15,7 @@ public:
     static bool FindClient()
     {
 
-        if (!clsSession::CheckUserPermission(clsBankUser::enPermissions::FindClient))
+        if (!clsSession::DoesCurrentUserHavePermission(clsBankUser::enPermissions::FindClient))
         {
             clsMessages::ShowAccessDeniedMessage();
             return false;

@@ -21,6 +21,8 @@ a bank system dealing with clients to make basic bank operations
 - Feature 10 — login and logout
 - Feature 11 — Applying permissions
 - Feature 12 — log (loggins and transfers) in file
+- Feature 13 — Encrypt users passwords
+
 
 ---
 

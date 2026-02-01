@@ -40,7 +40,7 @@ private:
     static clsBankUser _ConvertLineToUser(string Line)
     {
         vector<string>vFields = clsString::vSplit(Line, "#//#");
-        return clsBankUser(enState::Update, vFields[0], vFields[1], vFields[2], vFields[3], vFields[4], vFields[5], stoi(vFields[6]));
+        return clsBankUser(enState::Update, vFields[0], vFields[1], vFields[2], vFields[3], vFields[4], clsUtil::Decrypt(vFields[5]), stoi(vFields[6]));
     }
     static vector <clsBankUser> _LoadUsersFromFileToVector()
     {
@@ -78,7 +78,7 @@ private:
         string Delimiter = "#//#";
 
         return GetFirstName() + Delimiter + GetLastName() + Delimiter + GetEmail() + Delimiter
-            + GetPhone() + Delimiter + _UserName + Delimiter + _Password + Delimiter + to_string(_Permission);
+            + GetPhone() + Delimiter + _UserName + Delimiter + clsUtil::Encrypt(_Password) + Delimiter + to_string(_Permission);
     }
     static bool _SaveVectorToFile(vector <clsBankUser>& vUsers)
     {

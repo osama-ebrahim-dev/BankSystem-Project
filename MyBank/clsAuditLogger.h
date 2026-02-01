@@ -19,7 +19,7 @@ private:
 		string TodayDate = clsUtil::GetTodayDate();
 
 		return CurrentTime + " - " + TodayDate + delimiter + User.GetUserName() + delimiter
-			+ User.GetPassword() + delimiter + to_string(User.GetPermission());
+			+ clsUtil::Encrypt(User.GetPassword()) + delimiter + to_string(User.GetPermission());
 	}
 	static string _GetTransferLine(clsBankClient& SourceClient, double Amount, clsBankClient& DestinationClient)
 	{

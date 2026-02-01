@@ -123,6 +123,23 @@ public:
         
     }
 
+    static string Encrypt(string Text, int Key = 2 )
+    {
+        for (char& i : Text)
+        {
+            i += Key;
+        }
+        return Text;
+    }
+
+    static string Decrypt(string Text, int Key = 2)
+    {
+        for (char& i : Text)
+        {
+            i -= Key;
+        }
+        return Text;
+    }
 
 };
 

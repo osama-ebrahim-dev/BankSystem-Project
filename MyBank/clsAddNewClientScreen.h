@@ -21,7 +21,7 @@ private:
 
         Client.SetPinCode(clsInputValidate::ReadString("\nEnter PinCode : "));
 
-        Client.SetBalance(clsInputValidate::ReadDoubleNumber("\nEnter Balance : "));
+        Client.SetBalance(clsInputValidate::ReadNumber<double>("\nEnter Balance : "));
 
     }
 

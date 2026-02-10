@@ -12,6 +12,7 @@
 #include "clsManageUsersScreen.h"
 #include "clsSession.h"
 #include "clsLoginLoggerScreen.h"
+#include "clsCurrencyExchangeScreen.h"
 
 
 using namespace std;
@@ -23,7 +24,7 @@ private:
     enum class _enMainMenuOptions {
         ListClients = 1, AddNewClient = 2, DeleteClient = 3,
         UpdateClient = 4, FindClient = 5, ShowTransactionsMenu = 6,
-        ManageUsers = 7, LoginLogger, LogOut = 9
+        ManageUsers = 7, LoginLogger = 8, CurrencyExchange = 9, LogOut = 10
     };
 private :
     static void _DrawMainMenuScreen()
@@ -41,13 +42,14 @@ private :
         cout << "\t[6] Transactions.\n";
         cout << "\t[7] Manage Users.\n";
         cout << "\t[8] Login logger.\n";
-        cout << "\t[9] Logout.\n";
+        cout << "\t[9] Currency exchange.\n";
+        cout << "\t[10] Logout.\n";
         cout << "===========================================\n";
     }
 
     static _enMainMenuOptions ReadMainMenuOption()
     {
-        int MainMenuOption = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 9] : ", 1, 9);
+        int MainMenuOption = clsInputValidate::ReadNumberBetween("Choose what do you want to do [1 to 10] : ", 1, 10);
 
         return _enMainMenuOptions(MainMenuOption);
     }
@@ -93,6 +95,11 @@ private :
         clsLoginLoggerScreen::ShowLoginLoggerScreen();
     }
 
+    static void _ShowCurrencyExchangeMenu()
+    {
+        clsCurrencyExchangeScreen::StartCurrencyExchangeMenu();
+    }
+
     static void _PerformMainMenuOperation(_enMainMenuOptions Choice)
     {
         switch (Choice)
@@ -126,6 +133,9 @@ private :
         case clsMainScreen::_enMainMenuOptions::LoginLogger:
             _ShowLoginLogger();
             system("pause=0");
+            break;
+        case clsMainScreen::_enMainMenuOptions::CurrencyExchange:
+            _ShowCurrencyExchangeMenu();
             break;
         case clsMainScreen::_enMainMenuOptions::LogOut:
             clsSession::EndSession();

@@ -25,7 +25,7 @@ public :
 
         cout << Client.ToString() << endl;
 
-        double Amount = clsInputValidate::ReadDoubleNumber("Enter Withdraw amount : ");
+        double Amount = clsInputValidate::ReadNumber<double>("Enter Withdraw amount : ");
 
         char Confirm = clsInputValidate::ReadChar("\nAre you sure you want to perform this transaction (y/n) : ");
 

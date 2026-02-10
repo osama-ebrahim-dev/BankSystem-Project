@@ -1,69 +1,118 @@
+# 🏦 Bank Management System (C++)
 
-# 🏆 [Bank System Project]
-
-
-a bank system dealing with clients to make basic bank operations 
-
+A console-based **Bank Management System** developed in **C++**, following solid **Object-Oriented Programming (OOP)** principles and a layered architecture.  
+The system simulates real-world banking operations with file-based persistence, authentication, authorization, logging, and currency exchange.
 
 ---
 
-## 🚀 Features Implemented
+## 📌 Overview
 
-- Feature 1 — Finding a client from a txt file  
-- Feature 2 — Updating a client in the txt file
-- Feature 3 — Adding a new client in the txt file
-- Feature 4 — Deleting a client from the txt file  
-- Feature 5 — clients list , balances list
-- Feature 6 — a Main menu containig (list clients, add , delete , update , find)
-- Feature 7 — a Transactions menu containig (Deposit , Withdraw , Total Balances list , returning to main menu)
-- Feature 8 — Business logic layer for USER (User class)
-- Feature 9 — a manage users menu containig (list users, add , delete , update , find)
-- Feature 10 — login and logout
-- Feature 11 — Applying permissions
-- Feature 12 — log (loggins and transfers) in file
-- Feature 13 — Encrypt users passwords
+This project provides a complete banking workflow, including:
 
+- Client and account management  
+- Secure user authentication and authorization  
+- Transaction processing  
+- Currency exchange operations  
+- Audit logging and password encryption  
+
+The focus is on **clean code**, **scalability**, and **realistic business logic**.
 
 ---
 
-## 🧱 Object-Oriented Design 
+## 🚀 Features
 
-- **Classes:** (`Person`, `Bank Client`)  
-- **Inheritance:** Bank Client inherits from Person
+### 🧾 Client Management
+- Find clients from text file
+- Add new clients
+- Update existing clients
+- Delete clients
+- List all clients
+- View balances list
 
-- **Classes:** (`Screen`, `Main menu screen`)  
-- **Inheritance:** Main menu screen inherits from Screen
+### 💰 Transactions
+- Deposit
+- Withdraw
+- View total balances
+- Transaction menu navigation
 
-- **Classes:** (`Transactions menu screen`)  
-- **Inheritance:** Transactions menu screen inherits from Screen
+### 👥 User Management
+- Login and logout system
+- Role-based permissions
+- List users
+- Add, update, delete, and find users
+- Encrypted user passwords
 
-- **Classes:** (`User`)  
-- **Inheritance:** Bank User inherits from Person
+### 🔐 Security & System
+- Session management
+- Audit logging (logins and transactions)
+- File-based logs
+- Password encryption
 
-- **Classes:** (`manage users menu screen`)  
-- **Inheritance:** manage users menu screen inherits from Screen
-
-- **Classes:** (`Login screen` , `Session`)  
-- **Inheritance:** Login screen inherits from Screen
-
-- **Classes:** (`clsAuditLogger`)  
-- **Inheritance:** no inheritance
+### 💱 Currency Exchange
+- List currencies
+- Find currency by code
+- Update exchange rates
+- Currency calculator
 
 ---
 
-## 🧰 Technologies and Tools Used
+## 🧱 Object-Oriented Design
 
-- **Language:**  C++
-- **IDE:**   Visual Studio 
-- **Version Control:** Git & GitHub  
-- **Libraries / Frameworks Used:**  
-  - string library - a user-defined helper class   
-  - input validate library - a user-defined helper class 
-  - Util library - a user-defined helper class 
+The project is structured using inheritance, encapsulation, and polymorphism.
+
+### 📦 Class Architecture
+
+#### 👤 People 
+- `Person`
+- `BankClient` *(inherits from Person)*
+- `User` *(inherits from Person)*
+
+#### 🖥 Screens & Menus
+- `Screen`
+  - `MainMenuScreen`
+  - `TransactionsMenuScreen`
+  - `ManageUsersMenuScreen`
+  - `LoginScreen`
+
+#### 🔄 System & Utilities
+- `Session`
+- `clsAuditLogger`
+
+#### 💱 Currency
+- `clsCurrency`
+
+---
+
+## 🧰 Technologies & Tools
+
+- **Language:** C++
+- **IDE:** Visual Studio
+- **Version Control:** Git & GitHub
+
+### 📚 Custom Libraries
+- String Library (custom helper)
+- Input Validation Library
+- Utility Library
+- Messages Library
+
+---
+
+## 📂 Data Persistence
+
+- File-based storage using `.txt` files
+- Separate files for:
+  - Clients
+  - Users
+  - Logs
+  - Currency data
+
 ---
 
 ## 👨‍💻 Author
+
 **Osama Ebrahim**  
-📫 Contact: [osama.ebrahim.dev@gmail.com]  
+📧 Email: [osama.ebrahim.dev@gmail.com](mailto:osama.ebrahim.dev@gmail.com)  
 🌐 GitHub: [https://github.com/osama-ebrahim-dev](https://github.com/osama-ebrahim-dev)
+
+---
 

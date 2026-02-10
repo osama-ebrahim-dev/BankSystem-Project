@@ -37,7 +37,7 @@ private:
 
     static _enTransactionsMenuOptions _ReadTransactionsMenuOption()
     {
-        int TransactionsMenuOption = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 6] : ", 1, 6);
+        int TransactionsMenuOption = clsInputValidate::ReadNumberBetween("Choose what do you want to do [1 to 6] : ", 1, 6);
 
         return _enTransactionsMenuOptions(TransactionsMenuOption);
 

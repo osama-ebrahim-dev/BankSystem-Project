@@ -57,11 +57,11 @@ public:
 
 
 
-		double TransferAmount = clsInputValidate::ReadDoubleNumber("Enter tranfer amount : ");
+		double TransferAmount = clsInputValidate::ReadNumber<double>("Enter tranfer amount : ");
 
 		while (TransferAmount > SourceClient.GetBalance())
 		{
-			TransferAmount = clsInputValidate::ReadDoubleNumber("Amount exceeds the balance, Enter another amount : ");
+			TransferAmount = clsInputValidate::ReadNumber<double>("Amount exceeds the balance, Enter another amount : ");
 		}
 
 		char Confirm = clsInputValidate::ReadChar("Are you sure you want to perform this operation (y/n) : ");

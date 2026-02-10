@@ -41,7 +41,7 @@ private:
 	static _enManageUsersMenuOptions _ReadManageUsersMenuOption()
 	{
 
-		int choice = clsInputValidate::ReadIntNumberBetween("Choose what do you want to do [1 to 6] : ", 1, 6);
+		int choice = clsInputValidate::ReadNumberBetween("Choose what do you want to do [1 to 6] : ", 1, 6);
 
 		return _enManageUsersMenuOptions(choice);
 
